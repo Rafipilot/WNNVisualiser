@@ -58,13 +58,13 @@ def visualize_nn():
     for idx, (node, q_connections) in enumerate(zip(arch.datamatrix[0][arch.Q__flat], arch.datamatrix[1][arch.Q__flat])):
         if q_connections !=0:
             for i, connection in enumerate(q_connections):
-                print(f"{node}_{idx}, {arch.datamatrix[0][connection]}_{i}")
-                G.add_edge(f"{node}_{idx}" , f"{arch.datamatrix[0][connection]}_{i}")
+                print(f"{node}_{idx}, {arch.datamatrix[0][connection]}_{connection}")
+                G.add_edge(f"{node}_{idx}" , f"{arch.datamatrix[0][connection]}_{connection}")
 
     for idx, (node, z_connections) in enumerate(zip(arch.datamatrix[0][arch.Z__flat], arch.datamatrix[1][arch.Z__flat])):
         if z_connections !=0:
             for i, connection in enumerate(z_connections):
-                print(f"{node}_{idx}, {arch.datamatrix[0][connection]}_{i}")
+                print(f"{node}_{idx}, {arch.datamatrix[0][connection]}_{connection}")
                 G.add_edge(f"{node}_{idx}" , f"{arch.datamatrix[0][connection]}_{i}")
 
     
@@ -89,7 +89,7 @@ def visualize_nn():
 # Call the visualization function
 arch_i=[1,1,1]
 arch_z=[1]
-arch  = ao.Arch(arch_i=[1,1,1], arch_z=[1], connector_function="forward_forward_conn")
+arch  = ao.Arch(arch_i=[1,1,1], arch_z=[1], connector_function="forward_full_conn")
 Agent = ao.Agent(arch)
 
 # training and inference from the agent
